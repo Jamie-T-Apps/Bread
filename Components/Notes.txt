@@ -1,0 +1,72 @@
+
+// first attempt at a function to display Section List items
+    const Metric = ({title}) => (
+    // this component sets out the title heading for each metic array
+    <View style={styles.metricContainer}>
+        <Text style={styles.metricText}>{title}</Text>
+    </View>
+    );
+
+// Final version of the function to display  section list items with radio buttons
+// this must be nested within the 'screen' function to work due to state management aspect
+
+    const MetricRadio = ({title}) => {
+    //this component sets out the title heading for each metric array with a radio button
+
+    const [radio, setRadio] = useState('');
+
+    const radioHandler = () => {
+        // this updates the state of newLoaf with every keystroke in the text input container
+        if(radio === title){
+        setRadio('');
+        } else {
+        setRadio(title);
+        console.log(`${radio} set to ${title}`);
+        }
+    };
+
+    return(
+        <View style={styles.metricContainer}>
+            <View style={{flex: 5}}>
+            <Text style={styles.metricText}>{title}</Text>
+            </View>
+            <View style={{flex: 1}}>
+            <TouchableOpacity 
+                style={styles.circle}
+                onPress={() => {
+                radioHandler();
+                }}
+            >
+            {radio === title && <View style={styles.checkedCircle} />}
+            </TouchableOpacity>
+            </View>
+        </View>
+        );
+    };
+
+
+    // 20200422 - import list pre deconstrcut
+        import 'react-native-gesture-handler';
+        import React, { useState } from 'react';
+        import {
+        View,
+        Text,
+        Button,
+        TextInput,
+        SectionList,
+        SafeAreaView,
+        TouchableOpacity
+        } from 'react-native';
+        import { NavigationContainer } from '@react-navigation/native';
+        import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+        
+        //import custom components
+        
+        import { styles, Break } from './Components/MasterStyles';
+        import { inputData } from './Components/inputData';
+
+    // 20200424 - calling the array for loafs
+
+        <View>
+            {arrayLoafNames.map(LoafNames) => <Text key={LoafNames}>{LoafNames}</Text>}
+        </View>
